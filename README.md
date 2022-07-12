@@ -13,4 +13,7 @@ Type in bash command at root folder:
 ```
     $ npm run dev
 ```
-Then open in broswer with url localhost:5000
+Then open in broswer with url localhost:5000.
+
+
+Further description can be found in documentation.
