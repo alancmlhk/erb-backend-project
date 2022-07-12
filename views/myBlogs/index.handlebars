@@ -1,0 +1,24 @@
+<br>
+
+{{#if success_msg}}
+<div class="alert alert-success">{{success_msg}}</div>
+{{/if}}
+
+
+{{#each blogs}}
+<div class="card card-body mb-2">  
+    <h5>{{title}}
+      <span class="pl-3 pr-5"><small><i>Created on: {{time}}</i></small></span>
+      <span class="bi bi-chat-left-text-fill"><small>{{comments.length}}</small></span>
+    </h5>              
+    <p>{{details}}</p>
+    <a href="/myBlogs/edit/{{_id}}" class="btn btn-primary btn-block">Edit</a>
+    <form action="/myBlogs/{{_id}}?_method=DELETE" method="post">
+      <input type="hidden" name="_method" value="DELETE" />
+      <input type="submit" class="btn btn-danger btn-block" value="Delete" />
+    </form>
+</div>
+{{else}}
+<br><br>
+<h1>No blog posts yet</h1>
+{{/each}}

@@ -1,0 +1,26 @@
+<br>
+{{#each errors}}
+<div class="alert alert-danger">{{text}}</div>
+{{else}}
+{{/each}}
+{{#if success_msg}}
+<div class="alert alert-success">{{success_msg}}</div>
+{{/if}}
+<div class="card card-body">
+    <h3>Sign up</h3>
+    <form action="/users/createUser" method="post">
+    <div class="form-group">
+        <label for="username">User Name</label>
+        <input type="text" name="username" class="form-control" required/>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+       <input type="password" name="password" class="form-control" required/>
+    </div>
+    <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+       <input type="password" name="confirmPassword" class="form-control" required/>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

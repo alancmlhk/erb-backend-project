@@ -1,0 +1,174 @@
+<!-- Nav tabs -->
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#all">All Blogs</a>
+  </li>
+  {{#each users}}
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#{{username}}">{{username}}</a>
+  </li>
+  {{/each}}
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane container active" id="all">
+  
+  {{#each blogs}}
+
+  <div class="container mt-3">
+    <h5>{{title}}</h5>
+    <div class="media border p-3">
+      <img src="./avatar.jfif" alt="user" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+        <div class="media-body">
+          <h6>Author: {{author.username}}
+            <span class="pl-3 pr-5">
+              <small><i>Created on: {{time}}</i></small> 
+            </span>
+            <span class="bi bi-chat-left-text-fill">
+              {{comments.length}}
+            </span>
+          </h6>
+          <p>{{details}}</p>
+            
+          {{#each this.comments}}
+            <div class="media p-3">
+              <img src="./avatar.jfif" alt="commentUser" class="mr-3 mt-3 rounded-circle" style="width:45px;">
+              <div class="media-body">
+                <h6>{{commentUser}}
+                  <span class="pl-3 pr-5">
+                    <small><i>Posted on: {{commentTime}}</i></small>
+                  </span>
+                </h6>
+                <p>{{commentDetails}}</p>
+              </div>
+            </div>
+          {{/each}}
+          <a href="/commentBlog/{{_id}}" class="btn btn-primary">Add Comment</a>
+        </div>
+    </div>
+  </div>
+
+  {{else}}
+
+    <h1>No entry</h1>
+
+  {{/each}}
+  </div>
+  
+  {{#each users}}
+  <div class="tab-pane container fade" id="{{username}}">
+
+    {{#each blogs}}
+    <div class="container mt-3">
+      <h5>{{title}}</h5>
+      <div class="media border p-3">
+        <img src="./avatar.jfif" alt="user" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+          <div class="media-body">
+            <h6>Author: {{../username}}
+              <span class="pl-3 pr-5">
+                <small><i>Created on: {{time}}</i></small> 
+              </span>
+              <span class="bi bi-chat-left-text-fill">
+                {{comments.length}}
+              </span>
+            </h6>
+            <p>{{details}}</p>
+            
+            {{#each this.comments}}
+              <div class="media p-3">
+                <img src="./avatar.jfif" alt="commentUser" class="mr-3 mt-3 rounded-circle" style="width:45px;">
+                <div class="media-body">
+                  <h6>{{commentUser}}
+                    <span class="pl-3 pr-5">
+                      <small><i>Posted on: {{commentTime}}</i></small>
+                    </span>
+                  </h6>
+                  <p>{{commentDetails}}</p>
+                </div>
+              </div>
+            {{/each}}
+
+            <a href="/commentBlog/{{_id}}" class="btn btn-primary">Add Comment</a>
+
+        </div>
+      </div>
+    </div>
+
+    {{else}}
+
+      <h1>No entry</h1>
+
+    {{/each}}
+  </div>
+{{/each}}
+</div>
+
+<p></p>
+<div style="text-align: center">
+  <button id="subscribe" class="btn btn-primary">Subscribe Blog</button> 
+  <button id="backToTop" class="btn btn-primary">Back To Top</button>
+</div>
+
+<div class="popup-wrapper hide">
+  <div class="popup">
+    <div class="popup-close">X</div>       
+    <div class="popup-content">
+      <form class="container" action="/blogs" method="post">
+        <h3>To Subscribe:</h3>
+        <div class="form-group">
+          <label for="followAuthor"><strong>Choose which: </strong></label>
+          <input list="followAuthors" name="followAuthor" id="followAuthor"><strong> blog</strong>
+          <datalist id="followAuthors">
+            <option value="ALL">
+            {{#each users}}
+              <option value="{{username}}">
+            {{/each}}
+          </datalist>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" 
+            name="subscriberName" placeholder="Input your NAME here" required>
+        </div>
+        <p></p>
+        <div class="form-group">
+          <input type="email" class="form-control" 
+            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
+            name="subscriberEmail" placeholder="Input your EMAIL here" required>
+        </div>
+        <span><font color="red"><strong>Press submit. System will automatically</strong></font></span><br> 
+        <span><font color="red"><strong>record your details and return to blogs</strong></font></span><br><br>
+        <input type="submit" class="popup-btn hide" value="Submit">
+        <button type="submit" class="btn btn-primary popup-btn">Submit</button>
+      </form> 
+    </div>
+  </div>
+</div>
+
+<script>
+  const backToTopBtn = document.querySelector('#backToTop');
+  const subscribeBtn = document.querySelector('#subscribe');
+  const popupWrapper = document.querySelector('.popup-wrapper');
+  const closeBtn = document.querySelector('.popup-close');
+  const popup = document.querySelector('.popup');
+  const popupBtn = document.querySelector('.popup-btn');
+
+  backToTopBtn.addEventListener('click', () => {
+    scrollTo(0,0);
+  })
+  subscribeBtn.addEventListener('click', () => {
+    popupWrapper.classList.remove('hide');
+  })
+  popupWrapper.addEventListener('click', () => {
+    popupWrapper.classList.add('hide');
+  })
+  closeBtn.addEventListener('click', () => {
+    popupWrapper.classList.add('hide');
+  })
+  popupBtn.addEventListener('click', () => {
+    popupWrapper.classList.add('hide');
+  })
+  popup.addEventListener('click', (e) => {
+    e.stopPropagation();
+  })
+</script>

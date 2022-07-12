@@ -1,0 +1,20 @@
+<br>
+<div class="card card-body mb-2">
+
+  <h2>{{blog.title}}</h2>
+  <h6><b>Author:</b> {{blog.author.username}}
+    <span class="pl-3 pr-5"><small><i>Posted on: {{blog.time}}</i></small></span>
+    <span class="bi bi-chat-left-text-fill">{{blog.comments.length}}</span>
+  </h6>
+  <div class="card card-body"><p>{{blog.details}}</p></div>
+            
+  <form action="/commentBlog/{{blog._id}}?_method=PUT" method="post">
+    <input type="hidden" name="_method" value="PUT" />
+    <div class="form-group">
+      <label for="title"><b><br>Comment</b></label>
+      <textarea name="comment" id="" class="form-control" cols="30" rows="10" value="{{blog.comments.commentDetails}}" required placeholder="Please type your comment here..."></textarea>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Submit" />
+  </form>
+    
+</div>

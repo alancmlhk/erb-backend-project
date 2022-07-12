@@ -1,0 +1,47 @@
+<br>
+{{#each errors}}
+<div class="alert alert-danger">{{text}}</div>
+{{else}}
+{{/each}}
+        
+<h3>Welcome to BlogSite !</h3>
+<h7>Create a beautiful blog that fits your style.  Have fun and share your knowledge, experience and moments of happiness.</h7>
+<hr>
+        
+<!--Carousel-->    
+<div id="demo" class="carousel slide" data-ride="carousel">
+  <!--Indicators-->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>      
+  <!--The Slideshow-->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="../blogCook.jpg" alt="Image">
+      <div class="carousel-caption">
+        <h3>Try dessert recipe</h3>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="../blogFamily.jpg" alt="Image">
+      <div class="carousel-caption">
+        <h3>Share fun</h3>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="../blogTech.jpg" alt="Image">
+      <div class="carousel-caption">
+        <h3>Enrich knowledge</h3>
+      </div>
+    </div>
+  </div>
+  <!--Left & right controls of carousel-->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </a>
+  </div>
